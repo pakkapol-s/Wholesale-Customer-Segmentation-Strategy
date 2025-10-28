@@ -1,0 +1,1 @@
+This analysis addresses real-world data complexity by handling mixed feature types (continuous spending and categorical region/channel) and employing Standard Scaling and Principal Component Analysis (PCA) for dimensionality reduction. The resulting customer segments are profiled to provide actionable insights for sales, logistics, and targeted marketing strategies.
