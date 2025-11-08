@@ -18,3 +18,14 @@ By systematically transforming the data, and rigorously comparing clustering alg
 
 ---
 
+# Interpretation of Clusters
+
+1. Horeca Segments (Clusters 1 and 3): These are clearly defined by their reliance on Fresh and Frozen goods and their minimal use of commodities (Detergents_Paper is 700 vs. 6,800 for Retail). The key difference is the Fresh vs. Frozen mix, which dictates logistics and speed requirements.
+
+2. Retail Segments (Clusters 0 and 2): These are defined by extremely high proportional spending on Milk, Grocery, and Detergents_Paper. The segmentation here successfully identifies the commodity buyers who drive the highest volume in non-perishables.
+
+3. Validation of k=4: The model successfully split the two known channels into two distinct segments each, showing that within the Horeca group, the Fresh vs. Frozen reliance is the most important behavioral differentiator.
+
+--- 
+
+# Recommendations 
