@@ -28,6 +28,24 @@ By systematically transforming the data, and rigorously comparing clustering alg
 
 --- 
 
+## Machine Learning Model Evaluation
+
+This project utilized two unsupervised clustering algorithms, **K-Means** and **Gaussian Mixture Model ($\text{GMM}$)**, on the final optimized feature space ($N=3$ PCA components). Models were evaluated based on their internal coherence ($\text{Silhouette Score}$) and their alignment with the available business ground truth ($\text{Channel}$ label) using the **Adjusted Rand Index ($\text{ARI}$)**.
+
+### Final Model Performance Summary ($\mathbf{N=3}$ Components, $\mathbf{k=4}$ Clusters)
+
+| Metric | K-Means (Optimized) | Gaussian Mixture Model (GMM) | Interpretation |
+| :--- | :---: | :---: | :--- |
+| **Silhouette Score** (Internal Cohesion) | **0.4845** | 0.4818 | Higher score indicates tighter, better-separated clusters. K-Means is marginally superior in overall segment tightness. |
+| **Adjusted Rand Index (ARI)** (External Relevance) | **0.5347** | 0.5083 | Measures similarity between predicted clusters and the original `Channel` labels. K-Means provides stronger alignment with the underlying business structure. |
+| **Optimal Cluster Count ($\mathbf{k}$)** | 4 (from Elbow/Silhouette) | 4 (from BIC Minimum) | Both models agreed on 4 being the optimal number of segments for this data. |
+
+### Conclusion
+
+The final evaluation confirmed that the optimized **K-Means model** is the most effective solution for this dataset. While both models were highly effective, K-Means provided superior performance across both key metrics, validating its selection as the primary segmentation strategy.
+
+---
+
 # Recommendations 
 
 The four segments primarily delineate two major customer groups (Horeca and Retail) and two critical smaller segments that define specific strategic opportunities:
@@ -42,6 +60,54 @@ The four segments primarily delineate two major customer groups (Horeca and Reta
 
 ---
 
-Visualisations 
+## Visualisations 
 
-1. 
+1. Data Exploratory Analysis 
+![Data Exploratory Analysis ](EDA.png)
+
+2. Initial Plot (N = 6, k = 4)
+![Initial Cluster](initial_plot.png)
+
+3. Optimized Plot (N = 3, k = 4)
+![Optimized Plot](Customer_segments_PCA.png)
+
+---
+
+## Challenges Faced and Solutions 
+
+1. Data Skewness and Scale
+
+- Challenge: The raw spending data (e.g., Fresh vs. Detergents) exhibited massive differences in scale and severe right skewness, violating the assumptions of both K-Means and GMM algorithms and biasing results towards high-variance features.
+- Solution: Implemented a two-step preprocessing pipeline: Log Transformation (log(x+1)) to normalize the highly skewed spending distributions, followed by Standard Scaling across all features to ensure equal weighting in the PCA and clustering distance calculations.
+
+2. PCA Dimensionality (N) Optimization
+
+- Challenge: The standard 90% explained variance rule of thumb suggested using N=6 PCA components. However, this yielded a sub-optimal cluster quality (Silhouette Score≈0.398) because the extra components introduced noise into the clustering distances.
+- Implemented a rigorous optimization step: Instead of relying on the rule of thumb, PCA was iteratively tested using different component counts (e.g., N=3,4,6,8) while holding k=4 fixed. This empirical tuning successfully identified N=3 as the optimal dimensionality, resulting in a 21.5% improvement in clustering quality (Silhouette Score of 0.4845).
+
+3. Algorithm Selection and Validation
+
+- Challenge: The project required justifying the choice of K-Means over a more advanced model, as K-Means is based on the restrictive assumption of spherical clusters.
+- Solution: Performed a direct comparative study against the Gaussian Mixture Model (GMM), which handles elliptical clusters. GMM's optimal k was determined using the Bayesian Information Criterion (BIC)
+
+4. Cluster Interpretation
+- Challenge: The final clusters were derived from abstract PCA components, making direct business interpretation (profiling) difficult for non-technical users.
+- Solution: Engineered a solution by linking the final cluster labels back to the original, non-transformed data frame. This allowed the final segments to be profiled using mean spending in original currency (Fresh, Milk, etc.), creating clear, actionable profiles for business strategy.
+
+---
+
+## Technologies Used
+
+- Programming Language: Python
+- Data Manipulation and Analysis: Pandas and Numpy
+- Machine Leaning Model: Scikit-learn (sklearn);
+    - Preprocessing: StandardScaler for normalization
+    - Dimensionality Reduction: PCA for optimizing the feature space from N=6 down to N=3
+    - Clustering Models: KMeans and GaussianMixture (GMM) for core segmentation
+    - Evaluation Metrics: silhouette_score and adjusted_rand_score (ARI) for model validation.
+- Data Visualisations: Matplotlib, Seaborn
+
+---
+
+## Author
+Mr. Pakkapol Satthapiti | MSC of Data Science and AI | The University of Liverpool | Feel free to connect!
