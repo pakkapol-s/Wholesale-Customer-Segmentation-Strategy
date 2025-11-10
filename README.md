@@ -29,3 +29,19 @@ By systematically transforming the data, and rigorously comparing clustering alg
 --- 
 
 # Recommendations 
+
+The four segments primarily delineate two major customer groups (Horeca and Retail) and two critical smaller segments that define specific strategic opportunities:
+
+- Segment 1: Core Horeca (High Fresh): This cluster is highly pure, defined by extreme spending on Fresh products. Action: Focus inventory and delivery logistics for rapid, high-volume fresh goods supply.
+
+- Segment 2: Primary Retail (High Grocery/Detergents): This large segment represents the core retail client, characterized by high spending across Grocery and Detergents_Paper. Action: Target these clients with bulk discounts and long-term contracts for commodity items.
+
+- Segment 3: Delicatessen Niche: A distinct, smaller segment with disproportionately high spending on Delicassen products, suggesting specialized or premium food service clients. Action: Offer specialized product lines and personalized account management.
+
+- Segment 4: Balanced Middle Ground: A mixed segment with moderate, balanced spending across all categories. Action: Target cross-selling campaigns to increase spending in one dominant category (e.g., offer incentives to move them toward Frozen or Fresh specializations).
+
+---
+
+Visualisations 
+
+1. 
